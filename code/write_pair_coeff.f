@@ -29,7 +29,7 @@
       enddo
 
       do i=1,ntype
-            epsilon=1.5d0
+            epsilon=1.0d0
             cutoff=2.5d0!(2.d0)**(1.d0/6.d0)*sigma
             write(6,*) 'pair_coeff ',i,i,epsilon,sigma,cutoff
       enddo
