@@ -8,7 +8,7 @@ maxtime = 4001000
 l = 100
 input = "dump.DNAunzipping2.0"
 polymers = np.zeros((atoms, 3),dtype=float)
-kamo = open("kamograph.txt", "w")
+kamo = open(intput + "kamograph.txt", "w")
 with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
     while timestep <= maxtime:
         for i, line in enumerate(fp):
