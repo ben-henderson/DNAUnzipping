@@ -6,7 +6,7 @@ timestep = 0
 atoms = 400
 maxtime = 4001000
 l = 100
-input = "dump.DNAunzipping2.0"
+input = "dump.DNAunzipping2.5"
 polymers = np.zeros((atoms, 3),dtype=float)
 kamo = open(input + ".kamograph.txt", "w")
 with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
@@ -49,7 +49,7 @@ with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
                 result = 1
             #print (dx, dx ** 2)
             #print (dy, dy ** 2)
-            print (dist)
+            #print (dist)
             kamo.write(str(timestep) + " " + str(x) + " " + str(result)+ '\n')
         #print(timestep)
         timestep += 1000
