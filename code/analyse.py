@@ -12,7 +12,8 @@ kamo = open(input + ".kamograph.txt", "w")
 with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
     while timestep <= maxtime:
         for i, line in enumerate(fp):
-            if i >= (timestep*(atoms+9))+9 and i < (timestep+1)*(atoms+9):
+            if (i >= ((timestep/1000 * atoms) + 9) and i < ((timestep/1000 + 1) * atoms)):
+            #if line in lines_to_read:
                 newline = line.split()
                 #lines.append(newline)
                 atomid = int(newline[0])-1
@@ -22,14 +23,16 @@ with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
                 polymers[atomid, 0] = x*100
                 polymers[atomid, 1] = y*100
                 polymers[atomid, 2] = z*100
+                #print(x, y, z)
+
 
 
         for x in range(int((atoms/2))):
             #if (x == 5): print(timestep, x, polymers[x+200, 1])
-            dx = np.abs(polymers[x,0] - polymers[x+200,0])
-            dy = np.abs(polymers[x,1] - polymers[x+200,1])
-            dz = np.abs(polymers[x,2] - polymers[x+200,2])
-
+            dx = np.abs(polymers[x + 200,0] - polymers[x,0])
+            dy = np.abs(polymers[x + 200,1] - polymers[x,1])
+            dz = np.abs(polymers[x + 200,2] - polymers[x,2])
+            #print (dx)
             if (dx > l/2):
                 dx = l - dx
 
@@ -44,7 +47,9 @@ with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
                 result = 0
             else:
                 result = 1
-
+            #print (dx, dx ** 2)
+            #print (dy, dy ** 2)
+            print (dist)
             kamo.write(str(timestep) + " " + str(x) + " " + str(result)+ '\n')
         #print(timestep)
         timestep += 1000
