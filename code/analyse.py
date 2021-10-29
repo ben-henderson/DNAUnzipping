@@ -47,7 +47,7 @@ with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
                 result = 0
             else:
                 result = 1
-            #print (dx, dx ** 2)
+            #print (x, dx, dx ** 2)
             #print (dy, dy ** 2)
             #print (dist)
             kamo.write(str(timestep) + " " + str(x) + " " + str(result)+ '\n')
