@@ -2,17 +2,19 @@ import os
 import numpy as np
 
 polymers =[]
-timestep = 0
+timestep = 1000
 atoms = 400
 maxtime = 4001000
 l = 100
-input = "dump.DNAunzipping2.5"
+input = "dump.DNAunzipping1.3"
 polymers = np.zeros((atoms, 3),dtype=float)
 kamo = open(input + ".kamograph.txt", "w")
 with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
     while timestep <= maxtime:
+        print (timestep)
+        fp.seek(0)
         for i, line in enumerate(fp):
-            if (i >= ((timestep/1000 * atoms) + 9) and i < ((timestep/1000 + 1) * atoms)):
+            if (i >= ((timestep/1000 * (atoms+9)) + 9) and i < ((timestep/1000 + 1) * (atoms+9))):
             #if line in lines_to_read:
                 newline = line.split()
                 #lines.append(newline)
@@ -24,7 +26,8 @@ with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
                 polymers[atomid, 1] = y*100
                 polymers[atomid, 2] = z*100
                 #print(x, y, z)
-
+                #if(atomid==100):
+                #    print(timestep,polymers[atomid, 0])
 
 
         for x in range(int((atoms/2))):
@@ -32,7 +35,7 @@ with open("/home/ben/github/DNAUnzipping/outputs/"+input) as fp:
             dx = np.abs(polymers[x + 200,0] - polymers[x,0])
             dy = np.abs(polymers[x + 200,1] - polymers[x,1])
             dz = np.abs(polymers[x + 200,2] - polymers[x,2])
-            #print (dx)
+
             if (dx > l/2):
                 dx = l - dx
 
